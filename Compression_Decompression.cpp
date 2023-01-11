@@ -1,13 +1,13 @@
-#include"Compression.h"
-void   addToHashTable(node* root, string oldChars[], string newCode)
+#include"Compression_Decompression.h"
+void   Replace(node* root, string oldChars[], string newCode)
 {
     /*in order*/
     if (root == NULL)
         return;
     else if (root->left == NULL && root->right == NULL)//leaf
         oldChars[root->character] = newCode;
-    addToHashTable(root->left, oldChars, newCode + "0");
-    addToHashTable(root->right, oldChars, newCode + "1");
+    Replace(root->left, oldChars, newCode + "0");
+    Replace(root->right, oldChars, newCode + "1");
 
 }
 string ReadFromFile(string path)
@@ -46,7 +46,7 @@ string Encode(string s)
         minHeap.pop();
         right = minHeap.top();
         minHeap.pop();
-        /*creating w top node with a distinct character from my file chars to be distinguishable*/
+        /*creating a top node with a distinct character from my file chars to be distinguishable*/
         top = new node('|', left->frequency + right->frequency);
         top->left = left;
         top->right = right;
@@ -54,7 +54,7 @@ string Encode(string s)
         minHeap.push(top);
     }
     /*replacing the chars with binary representations*/
-    addToHashTable(minHeap.top(), oldChars, "");
+    Replace(minHeap.top(), oldChars, "");
     /*fill encoded with bin representation of my file*/
     for (int i = 0; i < s.length(); i++) {
         encoded.append(oldChars[s[i]]);
