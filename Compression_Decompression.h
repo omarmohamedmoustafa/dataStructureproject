@@ -28,7 +28,7 @@ public:
 };
 string fileAsString;
 priority_queue<node*, vector<node*>, compare> minHeap;
-void   addToHashTable(node* root, string oldChars[], string newCode);
+void   Replace(node* root, string oldChars[], string newCode);
 string ReadFromFile(string path);
 string Encode(string s);
 string Decode(string s);
