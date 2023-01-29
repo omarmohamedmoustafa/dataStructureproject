@@ -26,9 +26,7 @@ public:
         return (left->frequency > right->frequency);
     }
 };
-string fileAsString;
-priority_queue<node*, vector<node*>, compare> minHeap;
 void   Replace(node* root, string oldChars[], string newCode);
 string ReadFromFile(string path);
 string Encode(string s);
-string Decode(string s);
+void   Decode(string s);
