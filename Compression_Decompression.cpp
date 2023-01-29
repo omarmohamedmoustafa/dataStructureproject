@@ -1,4 +1,4 @@
-#include"compress.h"
+#include"Compression_Decompression.h"
 string fileAsString;
 priority_queue<node*, vector<node*>, compare> minHeap;
 void Replace(node* root, string oldChars[], string newCode)
