@@ -1,5 +1,7 @@
-#include"Compression_Decompression.h"
-void   Replace(node* root, string oldChars[], string newCode)
+#include"compress.h"
+string fileAsString;
+priority_queue<node*, vector<node*>, compare> minHeap;
+void Replace(node* root, string oldChars[], string newCode)
 {
     /*in order*/
     if (root == NULL)
@@ -8,7 +10,6 @@ void   Replace(node* root, string oldChars[], string newCode)
         oldChars[root->character] = newCode;
     Replace(root->left, oldChars, newCode + "0");
     Replace(root->right, oldChars, newCode + "1");
-
 }
 string ReadFromFile(string path)
 {
@@ -59,12 +60,14 @@ string Encode(string s)
     for (int i = 0; i < s.length(); i++) {
         encoded.append(oldChars[s[i]]);
     }
+    cout << "Original file size = " << fileAsString.size() * 8<<endl;
+    cout << "Compressed file size = " << encoded.size()<<endl;
+    cout << encoded << endl;
     return encoded;
 }
-string Decode(string s)
+void Decode(string s)
 {
     ofstream lastOut("last.txt");
-
     node* root = minHeap.top();
     string decompressed;
     node* temp = root;
@@ -85,5 +88,5 @@ string Decode(string s)
         lastOut << decompressed[i];
     }
     lastOut.close();
-    return decompressed;
+    cout << "Original file has been recreated sucessfully" << endl;
 }
