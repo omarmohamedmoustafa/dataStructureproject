@@ -13,6 +13,7 @@ void Replace(node* root, string oldChars[], string newCode)
 }
 string ReadFromFile(string path)
 {
+    fileAsString="";
     ifstream OriginalFile(path);
     string fileLine;
     while (getline(OriginalFile, fileLine)) {
@@ -88,5 +89,9 @@ void Decode(string s)
         lastOut << decompressed[i];
     }
     lastOut.close();
+    while (minHeap.size())
+    {
+        minHeap.pop();
+    }
     cout << "Original file has been recreated sucessfully" << endl;
 }
