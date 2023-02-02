@@ -133,33 +133,4 @@ public:
 		m_user << "ID: " << this->getId()<< endl;
 		return m_user.str();
 	}
-	string JSON()
-	{
-		std::ostringstream json;
-		json << "{\n";
-		json << "\"id\"" << ":" << this->getId() << "," << endl;
-		json << "\"name\"" << ":" << "\"" << this->getName() << "\"" << "," << endl;
-		json << "\"posts\"" << ":" << "{" << endl;
-		json << "\"post\"" << ":";
-		if(posts.size()>1)
-		{
-			json << "[" << endl;
-			for (int i = 0; i < posts.size(); i++)
-			{
-				if(i != posts.size()-1)
-					json << posts[i].json()<<",";
-				else
-					json << posts[i].json();
-			}
-			json << "]" << endl;
-		}
-		else
-		{
-			json << "{" << endl;
-			json << posts[0].json();
-			json << "}" << endl;
-		}
-		json << "}\n";
-		return json.str();
-	}
 };
