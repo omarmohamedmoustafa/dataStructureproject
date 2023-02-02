@@ -231,7 +231,7 @@ vector<_user> suggestions(vector<_user> users, int id)
 		if (i + 1 == suggestIds.size())
 		{
 			//for last elment in the array
-			if (!binary_search(followers_u1.begin(), followers_u1.end(), suggestIds[i]))
+			if (!binary_search(followers_u1.begin(), followers_u1.end(), suggestIds[i]) && suggestIds[i]!=id)
 			{
 				result.push_back(suggestIds[i]);
 			}
